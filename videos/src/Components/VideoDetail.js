@@ -1,5 +1,6 @@
 import React from "react";
 
+// This is the video and the decription
 const VideoDetail = ({ video }) => {
   if (!video) {
     return <div>Loading...</div>;

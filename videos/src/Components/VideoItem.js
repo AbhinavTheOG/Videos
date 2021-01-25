@@ -1,5 +1,6 @@
 import React from "react";
 import "./VideoItem.css";
+//This is the indivisual video in the video list.
 const VideoItem = ({ video, onVideoSelect }) => {
   return (
     <div onClick={() => onVideoSelect(video)} className="video-item item">
