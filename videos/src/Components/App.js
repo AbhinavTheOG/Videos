@@ -3,36 +3,38 @@ import SearchBar from "./SearchBar";
 import youtube from "../apis/youtube";
 import VideoList from "./VideoList";
 import VideoDetail from "./VideoDetail";
-import commentBox from "./CommentBox";
 
 class App extends React.Component {
   state = { videos: [], selectedVideo: null };
+
   componentDidMount() {
     this.onTermSubmit("buildings");
   }
-  onTermSubmit = async term => {
+
+  onTermSubmit = async (term) => {
     const response = await youtube.get("/search", {
       params: {
-        q: term
-      }
+        q: term,
+      },
     });
 
     this.setState({
       videos: response.data.items,
-      selectedVideo: response.data.items[0]
+      selectedVideo: response.data.items[0],
     });
   };
 
-  onVideoSelect = video => {
+  onVideoSelect = (video) => {
     this.setState({ selectedVideo: video });
   };
+
   render() {
     return (
       <div className="ui container">
         <SearchBar onFormSubmit={this.onTermSubmit} />
         <div className="ui grid">
           <div className="ui row">
-            <div className="nine wide column">
+            <div className="eleven wide column">
               <VideoDetail video={this.state.selectedVideo} />
             </div>
             <div className="five wide column">
@@ -40,9 +42,6 @@ class App extends React.Component {
                 onVideoSelect={this.onVideoSelect}
                 videos={this.state.videos}
               />
-              <div className="three wide column">
-                <commentBox/>
-              </div>
             </div>
           </div>
         </div>
